@@ -32,9 +32,9 @@ public class Config {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        driverManagerDataSource.setDriverClassName("Customer");
         driverManagerDataSource.setUsername("root");
-        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/test");
+        driverManagerDataSource.setUrl("http://192.168.1.69:8080/users/");
         driverManagerDataSource.setPassword("");
         return driverManagerDataSource;
         //return new EmbeddedDatabaseBuilder().setType(H2).build();
