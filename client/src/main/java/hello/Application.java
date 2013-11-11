@@ -11,18 +11,22 @@ public class Application {
     public static void main(String args[]) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         BufferedReader d = new BufferedReader(new InputStreamReader(System.in));
-        String name = d.readLine();
-        String surname = d.readLine();
-        String url = String.format("http://192.168.1.69:8080/add/%s/%s",name,surname);
-        Customer customer = restTemplate.getForObject(url, Customer.class);
+        System.out.println("Эмне кылгыңыз келип жатат?\n1 - Жабдып туруучулардын тизмесин көрсөт\n2 - Жабдып туруучуну өчүрүү");
+        String one = d.readLine();
+        String two = d.readLine();
+        if (one=="1") {String url = String.format("http://localhost:8080/providers");
+        Customer customer = restTemplate.getForObject(url, Customer.class);}
+        else
+        if (one=="2") {String url = String.format("http://localhost:8080/delete/{name}");
+            Customer customer = restTemplate.getForObject(url, Customer.class);}  else
+        {
+            String url = String.format("http://localhost:8080/"+"error command not found");
+            Customer customer = restTemplate.getForObject(url, Customer.class);
+        }
+        }
 
-        Customer[] customers = restTemplate.getForObject("http://192.168.1.69:8080/users/", Customer[].class);
-        for (Customer customerElement : customers){
-            System.out.println("ID:    " + customerElement.getId());
-            System.out.println("firstName:   " + customerElement.getFirstName());
-            System.out.println("lastName:   " + customerElement.getLastName());
+
         }
 
     }
 
-}

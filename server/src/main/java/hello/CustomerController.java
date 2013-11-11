@@ -1,12 +1,12 @@
 package hello;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,25 +20,25 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class CustomerController {
 
-    @RequestMapping(value = "/users")
+    @RequestMapping(value = "/providers")
     public @ResponseBody
-    Iterable<Customer> listUsers() {
+    Iterable<Customer> listProviders() {
 
         return  getRepository().findAll();
     }
 
-    @RequestMapping(value = "/add/{name}/{surname}")
-    public @ResponseBody Customer addUser(@PathVariable("name") String name, @PathVariable("surname") String surname) {
+    @RequestMapping(value = "/add/{name}")
+    public @ResponseBody Customer addUsers(@PathVariable("name") String name)  {
 
-        Customer customer= new Customer(name,surname);
+        Customer customer= new Customer(name);
         getRepository().save(customer);
 
         return customer;
     }
 
-    @RequestMapping(value = "/delete/{id}")
-    public @ResponseBody Customer deleteUser(@PathVariable("id") long id) {
-        getRepository().delete(id);
+    @RequestMapping(value = "/delete/{name}")
+    public @ResponseBody Customer deleteProvider(@PathVariable("name") String name) {
+       getRepository().delete(name);
         return null;
     }
 
