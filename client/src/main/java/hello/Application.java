@@ -8,21 +8,27 @@ import java.io.InputStreamReader;
 
 public class Application {
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) throws IOException
+    {
         RestTemplate restTemplate = new RestTemplate();
-        BufferedReader d = new BufferedReader(new InputStreamReader(System.in));
-        String name = d.readLine();
-        String surname = d.readLine();
-        String url = String.format("http://192.168.1.69:8080/add/%s/%s",name,surname);
-        Customer customer = restTemplate.getForObject(url, Customer.class);
+        BufferedReader input= new BufferedReader(new InputStreamReader(System.in));
+        System.out.println(" Jany buium kowuu");
+        String choice = input.readLine();
 
-        Customer[] customers = restTemplate.getForObject("http://192.168.1.69:8080/users/", Customer[].class);
-        for (Customer customerElement : customers){
-            System.out.println("ID:    " + customerElement.getId());
-            System.out.println("firstName:   " + customerElement.getFirstName());
-            System.out.println("lastName:   " + customerElement.getLastName());
-        }
+      {
+            System.out.println("Jany buium kowuu:");
+            String buium_aty= input.readLine();
+            String url = String.format("http://localhost:8080/add/%s", buium_aty);
+           Buium buium = restTemplate.getForObject(url,Buium.class);
+
+            Buium[] shops = restTemplate.getForObject("http://localhost:8080/buium/", Buium[].class);
+            for( Buium buiumElement : shops)
+            {
+                System.out.println("Id:     "+ buiumElement.getId());
+                System.out.println("Buium aty:     "+ buiumElement.getBuiumAty());
+
+            }
+
+      }
 
     }
-
-}
