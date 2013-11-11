@@ -1,28 +1,47 @@
 package hello;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
+@ComponentScan
+@EnableAutoConfiguration
 public class Application {
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) {
+        Scanner inport =new Scanner(System.in);
         RestTemplate restTemplate = new RestTemplate();
-        BufferedReader d = new BufferedReader(new InputStreamReader(System.in));
-        String name = d.readLine();
-        String surname = d.readLine();
-        String url = String.format("http://192.168.1.69:8080/add/%s/%s",name,surname);
-        Customer customer = restTemplate.getForObject(url, Customer.class);
+        Integer number;
+        System.out.print("Эмне кылгыныз келип жатат : ");
+        number=inport.nextInt();
 
-        Customer[] customers = restTemplate.getForObject("http://192.168.1.69:8080/users/", Customer[].class);
-        for (Customer customerElement : customers){
-            System.out.println("ID:    " + customerElement.getId());
-            System.out.println("firstName:   " + customerElement.getFirstName());
-            System.out.println("lastName:   " + customerElement.getLastName());
+        if (number==1){
+            String nameDucon,Tovars;
+            nameDucon = inport.next();
+            Tovars = inport.next();
+            String url = String.format("http://localhost:8080/addDukon/%s/%s", nameDucon, Tovars);
+            Shops shops = restTemplate.getForObject(url, Shops.class);
+        }
+        else if (number == 2){
+            String nameDucon,Tovars;
+            nameDucon = inport.next();
+            Tovars = inport.next();
+            String url = String.format("http://localhost:8080/addSatuuchu/%s/%s", nameDucon, Tovars);
+            Shops shops = restTemplate.getForObject(url, Shops.class);
+        }
+
+        Shops[] shopses = restTemplate.getForObject("http://localhost:8080/allSatuuchu/",Shops[].class);
+
+        for (Shops shops1 : shopses) {
+            System.out.println("id  :" + shops1.getId());
+            System.out.println("firstName  :" + shops1.getName());
+            System.out.println("nameTovar  :" + shops1.getTovars());
+            System.out.println("\n");
         }
 
     }
-
 }
