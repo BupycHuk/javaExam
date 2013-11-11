@@ -1,11 +1,9 @@
 package hello;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,22 +20,24 @@ public class CustomerController {
 
     @RequestMapping(value = "/users")
     public @ResponseBody
-    Iterable<Customer> listUsers() {
+    Iterable<Store> listUsers() {
 
         return  getRepository().findAll();
     }
 
     @RequestMapping(value = "/add/{name}/{surname}")
-    public @ResponseBody Customer addUser(@PathVariable("name") String name, @PathVariable("surname") String surname) {
+    public @ResponseBody
+    Store addUser(@PathVariable("name") String name, @PathVariable("surname") String surname) {
 
-        Customer customer= new Customer(name,surname);
-        getRepository().save(customer);
+        Store store = new Store(name,surname);
+        getRepository().save(store);
 
-        return customer;
+        return store;
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public @ResponseBody Customer deleteUser(@PathVariable("id") long id) {
+    public @ResponseBody
+    Store deleteUser(@PathVariable("id") long id) {
         getRepository().delete(id);
         return null;
     }

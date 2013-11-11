@@ -1,7 +1,5 @@
 package hello;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -32,9 +30,9 @@ public class Students {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "groupId")
-    private Groups groups;
+    private Postavshik postavshik;
 
-    public Groups getGroups() {
-        return groups;
+    public Postavshik getPostavshik() {
+        return postavshik;
     }
 }

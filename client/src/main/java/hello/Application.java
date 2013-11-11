@@ -11,16 +11,18 @@ public class Application {
     public static void main(String args[]) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         BufferedReader d = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("postavshiktin  aty:");
         String name = d.readLine();
-        String surname = d.readLine();
-        String url = String.format("http://192.168.1.69:8080/add/%s/%s",name,surname);
-        Customer customer = restTemplate.getForObject(url, Customer.class);
+        System.out.println("postavshiktin  kontagy: ");
+        String kontakt = d.readLine();
+        String url = String.format("http://localhost:8080/add/%s/%s",name,kontakt);
+        Person person = restTemplate.getForObject(url, Person.class);
 
-        Customer[] customers = restTemplate.getForObject("http://192.168.1.69:8080/users/", Customer[].class);
-        for (Customer customerElement : customers){
-            System.out.println("ID:    " + customerElement.getId());
-            System.out.println("firstName:   " + customerElement.getFirstName());
-            System.out.println("lastName:   " + customerElement.getLastName());
+        Person[] persons = restTemplate.getForObject("http://localhost:8080/users/", Person[].class);
+        for (Person personElement : persons){
+            System.out.println("ID:    " + personElement.getId());
+            System.out.println("Name:   " + personElement.getName());
+            System.out.println("Kontakt:   " + personElement.getKontakt());
         }
 
     }
