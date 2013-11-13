@@ -37,13 +37,11 @@ public class Application {
         Shop[] shopses = restTemplate.getForObject("http://localhost:8080/users/", Shop[].class);
         for (Shop shopElement : shopses){
             System.out.println("ID:    " + shopElement.getId());
-<<<<<<< HEAD
             System.out.println("thingName:   " + shopElement.getThingName());
             System.out.println("thingSum:   " + shopElement.getThingSum());
-=======
+
             System.out.println("thingName:   " + shopElement.getFirstName());
             System.out.println("thingSum:   " + shopElement.getLastName());
->>>>>>> 66b174e3f4d0f182161198392569919aedb230ce
             System.out.println("sellerName:   " + shopElement.getSellerName());
         }
 

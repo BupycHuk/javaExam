@@ -9,35 +9,28 @@ public class Shop {
     @GeneratedValue(strategy= GenerationType.AUTO)
 
     private long id;
-<<<<<<< HEAD
     @Column(name="thingName")
     private String thingName;
     @Column(name="thingSum")
     private String thingSum;
-=======
     @Column(name="firstName")
     private String firstName;
     @Column(name="lastName")
     private String lastName;
->>>>>>> 66b174e3f4d0f182161198392569919aedb230ce
     @Column(name="sellerName")
     private String sellerName;
     protected Shop() {}
 
-<<<<<<< HEAD
     public Shop(String thingName, String thingSum, String sellerName) {
         this.thingName = thingName;
         this.thingSum = thingSum;
-=======
     public Shop(String firstName, String lastName, String sellerName) {
         this.firstName = firstName;
         this.lastName = lastName;
->>>>>>> 66b174e3f4d0f182161198392569919aedb230ce
         this.sellerName = sellerName;
     }
 
 
-<<<<<<< HEAD
     public String getThingName() {
         return thingName;
     }
@@ -52,7 +45,6 @@ public class Shop {
 
     public void setThingSum(String thingSum) {
         this.thingSum = thingSum;
-=======
     public String getFirstName() {
         return firstName;
     }
@@ -67,7 +59,6 @@ public class Shop {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
->>>>>>> 66b174e3f4d0f182161198392569919aedb230ce
     }
 
     public String getSellerName() {
