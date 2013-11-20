@@ -11,26 +11,16 @@ public class Application {
     public static void main(String args[]) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         BufferedReader d = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("* * Дүкөндүн аты-->" );
-        String shopname = d.readLine();
-        System.out.println("* * Сатуучунун аты-жөнү-->");
-        String sellername = d.readLine();
-        System.out.println("* * Логин-->" );
-        String login =d.readLine();
-        System.out.println("* * Пароль-->");
-        String password  =d.readLine();
+        String name = d.readLine();
+        String surname = d.readLine();
+        String url = String.format("http://192.168.1.69:8080/add/%s/%s",name,surname);
+        Customer customer = restTemplate.getForObject(url, Customer.class);
 
-       String url = String.format("http://localhost:8080/addSeller/%s/%s/%s/%s",shopname,sellername,login,password);
-        Seller customer = restTemplate.getForObject(url, Seller.class);
-
-
-        //Seller[] sellers = restTemplate.getForObject("http://localhost:8080//addSeller/{shopname}/{name}/{surname}/{password}", Seller[].class);
-        Seller[] sellers = restTemplate.getForObject("http://localhost:8080/sellers/", Seller[].class);
-        for (Seller seller : sellers){
-            System.out.println("ID:    " + seller.getId());
-            System.out.println("fullname:   " + seller.getFullName());
-            System.out.println("login:   " + seller.getLogin());
-            System.out.println("Shop:   " + seller.getShop());
+        Customer[] customers = restTemplate.getForObject("http://192.168.1.69:8080/users/", Customer[].class);
+        for (Customer customerElement : customers){
+            System.out.println("ID:    " + customerElement.getId());
+            System.out.println("firstName:   " + customerElement.getFirstName());
+            System.out.println("lastName:   " + customerElement.getLastName());
         }
 
     }
