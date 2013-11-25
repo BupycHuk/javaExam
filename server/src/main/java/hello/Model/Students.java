@@ -1,6 +1,4 @@
-package hello;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package hello.Model;
 
 import javax.persistence.*;
 

@@ -1,5 +1,7 @@
-package hello;
+package hello.Controller;
 
+import hello.Config;
+import hello.Model.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Component;
@@ -25,17 +27,19 @@ public class SellerController {
         return  getRepository().findAll();
     }
 
-    @RequestMapping(value = "/addSeller/{shopname}/{name}/{surname}/{password}")
+    @RequestMapping(value = "/addSeller",method = RequestMethod.POST)
     public @ResponseBody
-    Seller addSeller(@PathVariable("name") String name,
-                     @PathVariable("shopname") String shopname,
-                     @PathVariable("password") String password,
-                     @PathVariable("surname") String surname) {
+    Seller addSeller(@RequestBody PostExample postExample) {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
         ShopRepository shopRepository = context.getBean(ShopRepository.class);
-        Shop shop = shopRepository.findByName(shopname);
+        Shop shop = shopRepository.findByName(postExample.getShopname());
 
-        Seller seller= new Seller(name,surname,password);
+        Iterable<Seller> byLogin = getRepository().findByLogin(postExample.getLogin());
+        if (byLogin!=null && byLogin.iterator().hasNext())
+        {
+            throw new IllegalArgumentException("This login is exists");
+        }
+        Seller seller= new Seller(postExample.getSellername(),postExample.getLogin(),postExample.getPassword());
         seller.setShop(shop);
         getRepository().save(seller);
         return seller;

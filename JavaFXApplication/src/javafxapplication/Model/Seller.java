@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package javafxapplication;
+package javafxapplication.Model;
 
 /**
  *
@@ -66,6 +66,13 @@ public class Seller {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public String getShopname()
+    {
+        if (getShop()!=null)
+            return getShop().getName();
+        return null;
     }
 }
 

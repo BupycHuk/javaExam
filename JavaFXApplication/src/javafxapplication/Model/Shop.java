@@ -1,14 +1,8 @@
-package hello;
 
-import javax.persistence.*;
-
-@Entity
+package javafxapplication.Model;
 public class Shop
 {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    @Column(name="name")
     private String name;
 
     public String getName() {
@@ -21,5 +15,11 @@ public class Shop
 
     public long getId() {
         return id;
+    }
+
+    public String toString()
+    {
+        return getId()+" - "+getName();
+
     }
 }

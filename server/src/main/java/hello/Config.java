@@ -45,7 +45,7 @@ public class Config {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
         lef.setJpaVendorAdapter(jpaVendorAdapter);
-        lef.setPackagesToScan("hello");
+        lef.setPackagesToScan("hello.Model");
         return lef;
     }
 
