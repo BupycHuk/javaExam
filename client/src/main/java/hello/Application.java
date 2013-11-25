@@ -32,18 +32,22 @@ public class Application {
         String thingSum = d.readLine();
         System.out.println("satuuchunun aty:");
         String sellerName = d.readLine();
-        String url = String.format("http://localhost:8080/add/%s/%s/%s", thingName,thingSum,sellerName);
+        String url = String.format("http://localhost:8080/addToShop/%s/%s", thingName,thingSum);
         Shop shop = restTemplate.getForObject(url, Shop.class);
-        Shop[] shopses = restTemplate.getForObject("http://localhost:8080/users/", Shop[].class);
-        for (Shop shopElement : shopses){
-            System.out.println("ID:    " + shopElement.getId());
-            System.out.println("thingName:   " + shopElement.getThingName());
-            System.out.println("thingSum:   " + shopElement.getThingSum());
-
-            System.out.println("thingName:   " + shopElement.getFirstName());
-            System.out.println("thingSum:   " + shopElement.getLastName());
-            System.out.println("sellerName:   " + shopElement.getSellerName());
-        }
+        url = String.format("http://localhost:8080/addToSellers/%s", sellerName);
+        Sellers sellers = restTemplate.getForObject(url, Sellers.class);
+//        Shop[] shopses = restTemplate.getForObject("http://localhost:8080/things/", Shop[].class);
+//        for (Shop shopElement : shopses){
+//            System.out.println("ID:    " + shopElement.getId());
+//            System.out.println("thingName:   " + shopElement.getThingName());
+//            System.out.println("thingSum:   " + shopElement.getThingSum());
+//        }
+//
+//        Sellers[] sellerses = restTemplate.getForObject("http://localhost:8080/sellers/", Sellers[].class);
+//        for (Sellers sellersElement : sellerses){
+//            System.out.println("ID:    " + sellersElement.getId());
+//            System.out.println("sellerName:   " + sellersElement.getSellerName());
+//        }
 
     }
 

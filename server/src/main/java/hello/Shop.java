@@ -13,21 +13,11 @@ public class Shop {
     private String thingName;
     @Column(name="thingSum")
     private String thingSum;
-    @Column(name="firstName")
-    private String firstName;
-    @Column(name="lastName")
-    private String lastName;
-    @Column(name="sellerName")
-    private String sellerName;
     protected Shop() {}
 
-    public Shop(String thingName, String thingSum, String sellerName) {
+    public Shop(String thingName, String thingSum) {
         this.thingName = thingName;
         this.thingSum = thingSum;
-    public Shop(String firstName, String lastName, String sellerName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.sellerName = sellerName;
     }
 
 
@@ -45,28 +35,6 @@ public class Shop {
 
     public void setThingSum(String thingSum) {
         this.thingSum = thingSum;
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getSellerName() {
-        return sellerName;
-    }
-
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
     }
 
     public long getId() {
@@ -77,3 +45,4 @@ public class Shop {
         this.id = Id;
     }
 }
+

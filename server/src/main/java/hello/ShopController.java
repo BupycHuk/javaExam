@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class ShopController {
 
-    @RequestMapping(value = "/users")
+    @RequestMapping(value = "/things")
     public @ResponseBody
     Iterable<Shop> listUsers() {
 
         return  getRepository().findAll();
     }
 
-    @RequestMapping(value = "/add/{thingName}/{thingSum}/{sellerName}")
-    public @ResponseBody Shop addUser(@PathVariable("thingName") String name, @PathVariable("thingSum") String surname,@PathVariable("sellerName") String seller) {
-        Shop shop= new Shop(name,surname,seller);
+    @RequestMapping(value = "/addToShop/{thingName}/{thingSum}")
+    public @ResponseBody Shop addUser(@PathVariable("thingName") String thing, @PathVariable("thingSum") String sum) {
+        Shop shop= new Shop(thing,sum);
         getRepository().save(shop);
         return shop;
     }
@@ -31,3 +31,4 @@ public class ShopController {
         return shopRepository;
     }
 }
+

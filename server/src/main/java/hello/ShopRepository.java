@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface ShopRepository extends CrudRepository<Shop, Long> {
 
-    List<Shop> findByLastName(String lastName);
+    List<Shop> findByThingName(String thingName);
 }

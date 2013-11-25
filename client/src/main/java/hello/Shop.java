@@ -8,7 +8,6 @@ public class Shop
 
     private long id;
     private String thingName, thingSum, sellerName;
-    private String firstName, lastName, sellerName;
 
 
 
@@ -22,14 +21,9 @@ public class Shop
 
     public String getThingSum() {
         return thingSum;
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
     public String getSellerName() {
         return sellerName;
     }
 }
+
