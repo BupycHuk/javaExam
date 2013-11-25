@@ -23,9 +23,7 @@ public class Application {
        String url = String.format("http://localhost:8080/addSeller/%s/%s/%s/%s",shopname,sellername,login,password);
         Seller customer = restTemplate.getForObject(url, Seller.class);
 
-
-        //Seller[] sellers = restTemplate.getForObject("http://localhost:8080//addSeller/{shopname}/{name}/{surname}/{password}", Seller[].class);
-        Seller[] sellers = restTemplate.getForObject("http://localhost:8080/sellers/", Seller[].class);
+         Seller[] sellers = restTemplate.getForObject("http://localhost:8080/sellers/", Seller[].class);
         for (Seller seller : sellers){
             System.out.println("ID:    " + seller.getId());
             System.out.println("fullname:   " + seller.getFullName());
